@@ -63,11 +63,17 @@ vbox = uix.VBox( 'Parent', h );
 hbox1 = uix.HBox( 'Parent', vbox, 'Padding', 1 );
 
 % Dynamic figure
-FigureAx = axes( 'Parent', hbox1, 'Title', 'DummyTitle' );
+FigureBox = uix.HBox( 'Parent', hbox1);
+%FigureAx = axes( 'Parent', FigureBox, 'Title', 'DummyTitle' );
 
 % Chamber Figure
 ChamberAx = axes( 'Parent', hbox1 ,'Title', ['Chamber map for ' d.sname]);
-hbox1.Widths = [-1 -1];
+
+% Electrode site figure
+ChannelAx = axes( 'Parent', hbox1 , 'Title', 'Channels');
+
+% Set widths
+hbox1.Widths = [-1 -1 -0.1];
 
 % Selection GUI
 hbox2 = uix.HBox( 'Parent', vbox, 'Padding', 2 );
@@ -124,6 +130,25 @@ xlabel('Medial-lateral (mm)')
 ylabel('Anterior-posterior (mm)')
 set(gca,'ButtonDownFcn', @mouseclick_callback)
 disp('')
+
+%% Plot Channels
+axes(ChannelAx)
+allChannels = [];
+for i = 1:length(d.Channels)
+    if iscell(d.Channels{i})
+        for j = 1:length(d.Channels{i})
+            allChannels = [allChannels; vertcat(d.Channels{i}{j}{:})];
+        end
+    end
+end
+chans = double(unique(allChannels));
+plot([0 0],[0 -max(chans)-1],'k')
+hold on
+for i = 1:length(chans)
+    channelHandle(i) = plot(0,-chans(i),'k.','MarkerSize',20);
+end
+ChannelAx.Visible = 'off';
+ChannelAx.Color = 'none';
 
 %% Callbacks
 
@@ -300,15 +325,16 @@ disp('')
 % Figure selection callback
     function ax = axesCallback(gcbo,eventdata)
         % Clear previous plot
-        cla(FigureAx)
-        
+        %cla(FigureAx)
+        FigureBox.Children.delete
         % Open figure and plot in correct axes
-        kids = get(temphandle.Children(selectAxes.Value),'children');
-        copyobj(kids,FigureAx);
-        FigureAx.XLabel = temphandle.Children(selectAxes.Value).XLabel;
-        FigureAx.YLabel = temphandle.Children(selectAxes.Value).YLabel;
-        FigureAx.Title = temphandle.Children(selectAxes.Value).Title;
-        axis(FigureAx,'tight')
+        %kids = get(temphandle.Children(selectAxes.Value),'children');
+        %copyobj(kids,FigureAx);
+        copyHandle = copyobj(temphandle.Children(selectAxes.Value),FigureBox);
+        %FigureAx.XLabel = temphandle.Children(selectAxes.Value).XLabel;
+        %FigureAx.YLabel = temphandle.Children(selectAxes.Value).YLabel;
+        %FigureAx.Title = temphandle.Children(selectAxes.Value).Title;
+        %axis(FigureAx,'tight')
     end
 
 
