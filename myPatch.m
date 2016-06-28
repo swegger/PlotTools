@@ -54,9 +54,13 @@ end
 
 
 %% Create patch vectors
-xpatch = [x - w; flipud(x + w)];
-ypatch = [y - w; flipud(y + w)];
-
+if isempty(w)
+   xpatch = [x; flipud(x)];
+   ypatch = [zeros(size(x)); flipud(y)];
+else
+    xpatch = [x; flipud(x)];
+    ypatch = [y - w; flipud(y + w)];
+end
 
 %% Plot the objects
 % Create objects

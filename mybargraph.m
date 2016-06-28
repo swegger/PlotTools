@@ -12,6 +12,7 @@ function h = mybargraph(x,y,varargin)
 barProperties_default.FaceColor = [0 0 0];
 barProperties_default.EdgeColor = 'none';
 barProperties_default.ShowBaseLine = 'off';
+barProperties_default.BarWidth = 0.8;
 
 
 %% Parse inputs
@@ -32,5 +33,5 @@ if ~isfield(barProperties,'ShowBaseLine')
 end
 
 %% Plot the data
-h = bar(x,y);
+h = bar(x,y,'BarWidth',barProperties.BarWidth);
 set(h,barProperties);
