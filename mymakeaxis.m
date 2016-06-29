@@ -31,7 +31,8 @@ if ~exist('xticks'), xticks=ax.XTick; end
 if ~exist('yticks'), yticks=ax.YTick; end
 if ~exist('xticklabels'), xticklabels=ax.XTickLabel; end
 if ~exist('yticklabels'), yticklabels=ax.YTickLabel; end
-if ~exist('xaxisOn'), xaxisOn = false; end
+if ~exist('xaxisOn'), xaxisOn = true; end
+if ~exist('yaxisOn'), yaxisOn = true; end
 
 if ~exist('font_name'), font_name = 'helvetica';, end
 if ~exist('font_size'), font_size = 16;, end
@@ -96,21 +97,23 @@ if xaxisOn
 end
 
 % draw vertical axis lines 
-plot([xlims(1)-yaxis.offset xlims(1)-yaxis.offset],ylims,'k');hold on
-
-% draw major tick on horizontal axis with approporiate labels
-for i = yticks
-  thisticklabel = yticklabels{find(yticks==i)};
-  % draw major tick
-  plot([xlims(1)-yaxis.offset xlims(1)-yaxis.offset-yaxis.majorTickLen],[i i],'k');
-  % draw text
-  thandle = text(xlims(1)-yaxis.offset-2*yaxis.majorTickLen,i,thisticklabel);
-  % and format the text
-  set(thandle,'HorizontalAlignment','right');
-  set(thandle,'VerticalAlignment','middle');
-  set(thandle,'FontSize',font_size);
-  set(thandle,'FontName',font_name);
-  set(thandle,'FontAngle',font_angle);
+if yaxisOn
+    plot([xlims(1)-yaxis.offset xlims(1)-yaxis.offset],ylims,'k');hold on
+    
+    % draw major tick on horizontal axis with approporiate labels
+    for i = yticks
+        thisticklabel = yticklabels{find(yticks==i)};
+        % draw major tick
+        plot([xlims(1)-yaxis.offset xlims(1)-yaxis.offset-yaxis.majorTickLen],[i i],'k');
+        % draw text
+        thandle = text(xlims(1)-yaxis.offset-2*yaxis.majorTickLen,i,thisticklabel);
+        % and format the text
+        set(thandle,'HorizontalAlignment','right');
+        set(thandle,'VerticalAlignment','middle');
+        set(thandle,'FontSize',font_size);
+        set(thandle,'FontName',font_name);
+        set(thandle,'FontAngle',font_angle);
+    end
 end
 
 % add x axis label
