@@ -31,6 +31,9 @@ barProperties = Parser.Results.barProperties;
 if ~isfield(barProperties,'ShowBaseLine')
     barProperties.ShowBaseLine = 'off';
 end
+if ~isfield(barProperties,'BarWidth')
+    barProperties.BarWidth = barProperties_default.BarWidth;
+end
 
 %% Plot the data
 h = bar(x,y,'BarWidth',barProperties.BarWidth);
