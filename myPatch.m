@@ -1,4 +1,4 @@
-function patchHandle = myPatch(x,y,w,varargin);
+function patchHandle = myPatch(x,y,w,varargin)
 %% myPatch
 %
 %   patchHandle = myPatch(x,y,w)

@@ -27,10 +27,10 @@ if ~exist('offsetRatio'), offsetRatio = 0.05;, end
 if ~exist('x_label'), x_label=ax.XLabel.String;, end
 if ~exist('y_label'), y_label=ax.YLabel.String;, end
 if ~exist('xytitle'), xytitle=ax.Title.String;, end
-if ~exist('xticks'), xticks=ax.XTick; end
-if ~exist('yticks'), yticks=ax.YTick; end
-if ~exist('xticklabels'), xticklabels=ax.XTickLabel; end
-if ~exist('yticklabels'), yticklabels=ax.YTickLabel; end
+if ~exist('xticks'), xticks=ax.XTick(1:2:end); end
+if ~exist('yticks'), yticks=ax.YTick(1:2:end); end
+if ~exist('xticklabels'), xticklabels=ax.XTickLabel(1:2:end); end
+if ~exist('yticklabels'), yticklabels=ax.YTickLabel(1:2:end); end
 if ~exist('xaxisOn'), xaxisOn = true; end
 if ~exist('yaxisOn'), yaxisOn = true; end
 
