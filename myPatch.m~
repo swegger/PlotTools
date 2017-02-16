@@ -57,14 +57,11 @@ end
 if isempty(w)
    xpatch = [x; flipud(x)];
    ypatch = [zeros(size(x)); flipud(y)];
-elseif size(w,3) == 2
-    xpatch = [x; flipud(x)];
-    ypatch = [y - w(:,:,1); flipud(y + w(:,:,2))];
-elseif size(w,3) == 1
+elseif size(w,3) > 1
+    xpatch = [x; flipud(
+else
     xpatch = [x; flipud(x)];
     ypatch = [y - w; flipud(y + w)];
-else
-    error(['w should either be MxNx1 or MxNx2'])
 end
 
 %% Plot the objects
