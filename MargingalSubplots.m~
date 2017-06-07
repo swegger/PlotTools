@@ -1,0 +1,34 @@
+function h = MargingalSubplots(varargin)
+%% MarginalSubplots
+%
+%%
+
+%% Defaults
+
+%% Parse inputs
+Parser = inputParser;
+
+addParameter(Parser,'Handles',NaN)
+addParameter(Parser,'xMargin',10)
+addParameter(Parser,'xHeight',20)
+addParameter(Parser,'yMargin',10)
+addParameter(Parser,'yHeight',20)
+
+parse(Parser,varargin{:})
+
+Handels = Parser.Results.Handels;
+xMargin = Parser.Results.xMargin;
+xHeight = Parser.Results.xHeight;
+yMargin = Parser.Results.yMargin;
+yHeight = Parser.Results.yHeight;
+
+%% Generate subplots
+if ~is
+h(1) = subplot(1,3,1);
+h(2) = subplot(1,3,2);
+h(3) = subplot(1,3,3);
+
+%% Adjust locations
+MainPos = h(1).Position;
+h(2).Position = [MainPos(1) MainPos(2)+yMargin+yHeight MainPos(3) yHeight];
+h(3).Position = [MainPos(1)+xMargin+xHeight+MainPos(3) MainPos(2) xHeight MainPos(4)];
