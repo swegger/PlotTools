@@ -51,5 +51,4 @@ h{3}.Position = [MainPos(1)+xMargin+MainPos(3) MainPos(2) xHeight MainPos(4)];
 h{3}.XDir = 'reverse';
 h{3}.YAxisLocation = 'right';
 
-disp('test')
 
