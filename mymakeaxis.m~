@@ -21,23 +21,23 @@ end
 
 eval(evalargs(argin));
 
-if ~exist('majorTickRatio','var'), majorTickRatio = 0.02;, end
-if ~exist('minorTickRatio','var'), minorTickRatio = 0.01/2;, end
-if ~exist('offsetRatio','var'), offsetRatio = 0.05;, end
-if ~exist('x_label','var'), x_label=ax.XLabel.String;, end
-if ~exist('y_label','var'), y_label=ax.YLabel.String;, end
-if ~exist('xytitle','var'), xytitle=ax.Title.String;, end
-if ~exist('xticks','var'), xticks=ax.XTick(1:2:end); end
-if ~exist('yticks','var'), yticks=ax.YTick(1:2:end); end
-if ~exist('xticklabels','var'), xticklabels=ax.XTickLabel(1:2:end); end
-if ~exist('yticklabels','var'), yticklabels=ax.YTickLabel(1:2:end); end
-if ~exist('xaxisOn','var'), xaxisOn = true; end
-if ~exist('yaxisOn','var'), yaxisOn = true; end
+if ~exist('majorTickRatio'), majorTickRatio = 0.02;, end
+if ~exist('minorTickRatio'), minorTickRatio = 0.01/2;, end
+if ~exist('offsetRatio'), offsetRatio = 0.05;, end
+if ~exist('x_label'), x_label=ax.XLabel.String;, end
+if ~exist('y_label'), y_label=ax.YLabel.String;, end
+if ~exist('xytitle'), xytitle=ax.Title.String;, end
+if ~exist('xticks'), xticks=ax.XTick(1:2:end); end
+if ~exist('yticks'), yticks=ax.YTick(1:2:end); end
+if ~exist('xticklabels'), xticklabels=ax.XTickLabel(1:2:end); end
+if ~exist('yticklabels'), yticklabels=ax.YTickLabel(1:2:end); end
+if ~exist('xaxisOn'), xaxisOn = true; end
+if ~exist('yaxisOn'), yaxisOn = true; end
 
-if ~exist('font_name','var'), font_name = 'helvetica';, end
-if ~exist('font_size','var'), font_size = 16;, end
-if ~exist('font_angle','var'), font_angle = 'italic';, end
-if ~exist('interpreter','var'), interpreter = 'tex'; end
+if ~exist('font_name'), font_name = 'helvetica';, end
+if ~exist('font_size'), font_size = 16;, end
+if ~exist('font_angle'), font_angle = 'italic';, end
+if ~exist('interpreter'), interpreter = 'tex'; end
 
 % turn off current axis
 %axis tight;
