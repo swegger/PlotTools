@@ -27,10 +27,29 @@ if ~exist('offsetRatio','var'), offsetRatio = 0.05;, end
 if ~exist('x_label','var'), x_label=ax.XLabel.String;, end
 if ~exist('y_label','var'), y_label=ax.YLabel.String;, end
 if ~exist('xytitle','var'), xytitle=ax.Title.String;, end
-if ~exist('xticks','var'), xticks=ax.XTick(1:2:end); end
-if ~exist('yticks','var'), yticks=ax.YTick(1:2:end); end
-if ~exist('xticklabels','var'), xticklabels=ax.XTickLabel(1:2:end); end
-if ~exist('yticklabels','var'), yticklabels=ax.YTickLabel(1:2:end); end
+
+if ~exist('xticks','var') && ~exist('xticklabels','var')
+    xticks=ax.XTick(1:2:end);
+    xticklabels=ax.XTickLabel(1:2:end);
+elseif exist('xticks','var') && ~exist('xticklabels','var')
+    xticklabels = cellstr(num2str(xticks(:)));
+elseif ~exist('xticks','var') && exist('xticklabels','var')
+    xticks = str2num(cell2mat(xticklabels(:)))';
+end
+if ~exist('yticks','var') && ~exist('yticklabels','var')
+    yticks=ax.YTick(1:2:end);
+    yticklabels=ax.YTickLabel(1:2:end);
+elseif exist('yticks','var') && ~exist('yticklabels','var')
+    yticklabels = cellstr(num2str(yticks(:)));
+elseif ~exist('yticks','var') && exist('yticklabels','var')
+    yticks = str2num(cell2mat(yticklabels(:)))';
+end
+
+% if ~exist('xticks','var'), xticks=ax.XTick(1:2:end); end
+% if ~exist('yticks','var'), yticks=ax.YTick(1:2:end); end
+% if ~exist('xticklabels','var'), xticklabels=ax.XTickLabel(1:2:end); end
+% if ~exist('yticklabels','var'), yticklabels=ax.YTickLabel(1:2:end); end
+
 if ~exist('xaxisOn','var'), xaxisOn = true; end
 if ~exist('yaxisOn','var'), yaxisOn = true; end
 
