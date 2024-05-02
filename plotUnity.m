@@ -17,12 +17,14 @@ lineProperties_default.Color = 'k';
 Parser = inputParser;
 
 addParameter(Parser,'axesHandle',gca)
+addParameter(Parser,'scale',1)
 addParameter(Parser,'lineProperties',lineProperties_default)
 addParameter(Parser,'MinMax',[NaN NaN])
 
 parse(Parser,varargin{:});
 
 axesHandle = Parser.Results.axesHandle;
+scale = Parser.Results.scale;
 lineProperties = Parser.Results.lineProperties;
 MinMax = Parser.Results.MinMax;
 
@@ -32,7 +34,7 @@ if any(isnan(MinMax))
 end
 
 % Plot the unity line
-h = plot(axesHandle,MinMax,MinMax);
+h = plot(axesHandle,MinMax,scale*MinMax);
 if isstruct(lineProperties)
     set(h,lineProperties)
 elseif iscell(lineProperties)
